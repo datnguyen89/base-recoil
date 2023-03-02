@@ -1,11 +1,10 @@
 import React from 'react'
-import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { MainContentWrapper } from './MainContentStyled'
 
 const MainContent = props => {
   // region props, hook, state
-  const { children, commonStore } = props
+  const { children } = props
 
   // endregion
   // region destructuring
@@ -32,4 +31,4 @@ const MainContent = props => {
 }
 
 MainContent.propTypes = {}
-export default inject('commonStore')(observer(MainContent))
+export default MainContent

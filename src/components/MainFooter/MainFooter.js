@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { inject, observer } from 'mobx-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhoneVolume } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -71,4 +70,4 @@ const MainFooter = props => {
 
 MainFooter.propTypes = {}
 
-export default inject('commonStore')(observer(MainFooter))
+export default MainFooter

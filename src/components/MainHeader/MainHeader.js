@@ -1,20 +1,23 @@
 import React, { useState } from 'react'
-import { inject, observer } from 'mobx-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { HeaderLogoArea, MainHeaderRight, MainHeaderRightMobile, MainHeaderWrapper } from './MainHeaderStyled'
 import IMAGES from '../../images'
 import { Drawer } from 'antd'
 import HeaderUserArea from '../HeaderUserArea'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { DEVICE, PAGES } from '../../utils/constant'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import MenuSideBarArea from '../MenuSideBarArea'
+import { useSetRecoilState } from 'recoil'
+import { collapsedState } from '../../recoil/commonState'
 
 const MainHeader = props => {
   // region props, hook, state
+  const setIsCollapse = useSetRecoilState(collapsedState)
+
   const { commonStore } = props
-  const history = useHistory()
+  const history = useNavigate()
   const [visibleMobileDrawerRight, setVisibleMobileDrawerRight] = useState(false)
 
   // endregion
@@ -28,7 +31,7 @@ const MainHeader = props => {
   // endregion
   // region function handle logic
   const handleToggleSideBar = () => {
-    commonStore.setIsCollapse(!commonStore.isCollapse)
+    setIsCollapse(!commonStore.isCollapse)
   }
   // endregion
   // region function render
@@ -42,7 +45,7 @@ const MainHeader = props => {
     <MainHeaderWrapper gradientColor={appTheme.gradientColor}>
       <HeaderLogoArea width={device === DEVICE.DESKTOP ? commonStore.isCollapse ? 'auto' : '220px' : 'auto'}>
         <img src={IMAGES.AUTH_LOGO} alt={''} style={{ cursor: 'pointer' }} height={48}
-             onClick={() => history.push(PAGES.HOME.PATH)} />
+             onClick={() => history(PAGES.HOME.PATH)} />
         {
           device === DEVICE.DESKTOP
             ?
@@ -84,4 +87,4 @@ const MainHeader = props => {
 
 MainHeader.propTypes = {}
 
-export default inject('commonStore')(observer(MainHeader))
+export default MainHeader

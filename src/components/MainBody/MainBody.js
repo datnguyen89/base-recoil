@@ -2,15 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { MainBodyWrapper } from './MainBodyStyled'
 import { DEVICE, SIDEBAR_WIDTH_COLLAPSE, SIDEBAR_WIDTH_EXPAND } from '../../utils/constant'
-import { inject, observer } from 'mobx-react'
+import { useRecoilValue } from 'recoil'
+import { collapsedState } from '../../recoil/commonState'
 
 const MainBody = props => {
   // region props, hook, state
-  const { children, commonStore } = props
+  const { children } = props
+  const isCollapse = useRecoilValue(collapsedState)
 
   // endregion
   // region destructuring
-  const { isCollapse, device } = commonStore
 
   // endregion
   // region variable
@@ -27,7 +28,6 @@ const MainBody = props => {
   // endregion
 
   const renderContentMargin = () => {
-    if (device === DEVICE.MOBILE) return 0
     if (isCollapse) {
       return SIDEBAR_WIDTH_COLLAPSE
     } else {
@@ -44,4 +44,4 @@ const MainBody = props => {
 }
 
 MainBody.propTypes = {}
-export default inject('commonStore')(observer(MainBody))
+export default MainBody
