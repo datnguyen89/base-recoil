@@ -102,7 +102,7 @@ const OtpModal = props => {
     <OtpModalWrapper
       title='Nhập mã xác thực'
       maskClosable={false}
-      visible={visible}
+      open={visible}
       footer={null}
       onCancel={handleCancel}>
       <Row justify={'center'}>

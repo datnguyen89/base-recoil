@@ -6,6 +6,8 @@ import queryString from 'query-string'
 import { getRecoil, setRecoil } from 'recoil-nexus'
 import { appLoadingState } from '../recoil/commonState'
 import { PAGES, RESPONSE_CODE } from '../constant'
+import stringUtils from '../utils/stringUtils'
+import cypherUtil from '../utils/cypherUtil'
 
 
 const axiosClient = axios.create({
@@ -15,18 +17,26 @@ const axiosClient = axios.create({
   },
   paramsSerializer: params => queryString.stringify(params),
 })
-
+// axiosClient.defaults.headers.common['HostClient'] = getRecoil('')
 axiosClient.interceptors.request.use(
   request => {
-    // region Headers
-
-    // endregion
     // region Loading
     if (!request?.disabledLoading) {
       setRecoil(appLoadingState, (appLoading) => appLoading + 1)
     }
     // endregion
     console.log(request?.method, request.url.replace(config.apiUrl, ''), request?.method === 'get' ? request?.params : request?.data)
+    if (!request.disableEncrypt) {
+      let k = stringUtils.randomId(16)
+      let obj = { key: k, iv: k }
+      let strDataKey = JSON.stringify(obj)
+      let strData = JSON.stringify({ ...request.data })
+
+      let encryptedDataKey = cypherUtil.rsaEncrypt(strDataKey)
+      let encryptedData = cypherUtil.aesEncrypt(strData, k, k)
+      request.data = { data: encryptedData, objKey: encryptedDataKey }
+    }
+
     return request
   },
   error => {
