@@ -11,6 +11,7 @@ import CustomRouter from './customRouter/CustomRouter'
 // region Pages
 import { PAGES } from './constant'
 import HomePage from './pages/HomePage'
+import ReportSumCallByProvider from './pages/ReportSumCallByProvider'
 import NotFoundPage from './pages/NotFoundPage'
 import LoginPage from './pages/LoginPage'
 import ProtectedLayout from './layouts/ProtectedLayout'
@@ -29,6 +30,7 @@ const App = () => {
           </Route>
           <Route element={<ProtectedLayout />}>
             <Route path={PAGES.HOME} element={<HomePage />} />
+              <Route path={PAGES.REPORTSUMCALLBYPROVIDER} element={<ReportSumCallByProvider />} />
           </Route>
           <Route path='*' element={<NotFoundPage />} />
         </Routes>

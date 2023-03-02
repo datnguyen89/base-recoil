@@ -1,10 +1,23 @@
 /** Use only with Antd Form */
 /** Use only with Antd Form */
 import moment from 'moment'
+import dateUtils from './utils/dateUtils'
 
 /** Currently validator will no longer working if using regex from outside 'validator' object */
 
 const validator = {
+  validateRangePickerExport: (rule, value, callback) => {
+    const monthFrom = dateUtils.getAbsoluteMonths(value[0])
+    const monthTo = dateUtils.getAbsoluteMonths(value[1])
+    const dayFrom = Number(value[0].format('DD'))
+    const dayTo = Number(value[1].format('DD'))
+
+    if ((monthTo - monthFrom > 3) || ((monthTo - monthFrom === 3) && dayTo > dayFrom)) {
+      callback('Thời gian tra cứu không được vượt quá 3 tháng!')
+    } else {
+      callback()
+    }
+  },
   validateAccountNumber: (rule, value, callback) => {
     const regex = /^\d*$/
     const regexWhitespace = /^\S$|^\S[\s\S]*\S$/

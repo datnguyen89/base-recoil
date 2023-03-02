@@ -4,6 +4,7 @@ export const LONG_DATE = 'DD-MM-YYYY HH:mm'
 export const PAGES = {
   LOGIN: '/login',
   HOME: '/',
+  REPORTSUMCALLBYPROVIDER: '/report-sum-call-provider'
 }
 export const METHOD_CODE = {
   WALLET: 'MBFWALLET',

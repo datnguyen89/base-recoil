@@ -24,7 +24,47 @@ export const BorderBoxWrapper = styled.div`
     }
   }}
 `
-
+export const RowSpaceBetweenDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: ${props => props.margin || 0};
+  padding: ${props => props.padding || 0};
+  gap: 16px;
+  @media only screen and (max-width: 768px) {
+    justify-content: center;
+  }
+`
+export const RowCenterDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: ${props => props.margin || 0};
+  padding: ${props => props.padding || 0};
+`
+export const PaginationLabel = styled.span`
+  color: #767676;
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 16px;
+  }
+`
+export const ColorText = styled.span`
+  color: ${props => props.color || '#333'};
+  background: ${props => props.background || 'transparent'};
+  font-weight: ${props => props.fontWeight || 'normal'};
+  padding: ${props => props.padding || '0'};
+  margin: ${props => props.margin || '0'};
+  font-size: ${props => props.fontSize || '1.4rem'};
+  font-weight: ${props => props.fontWeight || 400};
+`
+export const DropdownShowColumnWrapper = styled.div`
+  background-color: #fff;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+`
 export const WhiteShadowBox = styled.div`
   background: #FFFFFF;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
