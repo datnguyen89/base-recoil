@@ -1,9 +1,13 @@
 import styled from 'styled-components'
+import IMAGES from '../../images'
 
 export const AuthenticationLayoutWrapper = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #ccc;
+  flex-direction: column;
+  height: 100vh;
+  background-image: url(${IMAGES.AUTH_BACKGROUND});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: #f0f2f5;
 `

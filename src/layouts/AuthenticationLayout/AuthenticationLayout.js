@@ -1,6 +1,9 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { AuthenticationLayoutWrapper } from './AuthenticationLayoutStyled'
+import AuthHeader from '../../components/AuthHeader'
+import AuthBody from '../../components/AuthBody'
+import AuthFooter from '../../components/AuthFooter'
 
 const AuthenticationLayout = props => {
   // region props, hook, state =================
@@ -24,7 +27,11 @@ const AuthenticationLayout = props => {
 
   return (
     <AuthenticationLayoutWrapper>
-      <Outlet />
+      <AuthHeader />
+      <AuthBody>
+        <Outlet />
+      </AuthBody>
+      <AuthFooter />
     </AuthenticationLayoutWrapper>
   )
 }

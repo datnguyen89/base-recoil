@@ -10,13 +10,14 @@ const request = {
       disableAutoError: disableAutoError,
     })
   },
-  post: (url, data, disabledLoading, disableAutoError) => {
+  post: (url, data, disabledLoading, disableAutoError, disableEncrypt) => {
     return axiosClient({
       url: url,
       method: 'post',
       data: data,
       disabledLoading: disabledLoading,
       disableAutoError: disableAutoError,
+      disableEncrypt: disableEncrypt
     })
   },
 }
