@@ -1,5 +1,5 @@
 // region Website config
-
+export const APP_CLIENT_ID = 5
 export const LONG_DATE = 'DD-MM-YYYY HH:mm'
 export const PAGES = {
   LOGIN: '/login',
@@ -10,11 +10,6 @@ export const METHOD_CODE = {
   DOMESTIC: 'MBFBANK',
   INTERNATIONAL: 'INTCARD',
 }
-export const PAYMENT_RESULT_STATUS = {
-  SUCCESS: 'SUCCESS',
-  PENDING: 'PENDING',
-  ERROR: 'ERROR',
-}
 export const RESPONSE_CODE = {
   SUCCESS: 1, // Thành công
   PENDING: 0, // Giao dịch treo
@@ -24,22 +19,12 @@ export const RESPONSE_CODE = {
   REQUIRE_CONFIRM_BANK: -100303, // yêu cầu otp bank
   INVALID_OTP: -10015, // sai otp được nhập lại
 }
-export const BANK_TYPE = {
-  DOMESTIC: 1,
-  INTERNATIONAL: 2,
-}
-export const REQUIRE_FIELD = {
-  BANK_ACCOUNT_NAME: 'bankAccountName', // Tên chủ thẻ
-  BANK_ACCOUNT: 'bankAccount', // Số thẻ hoặc số tài khoản
-  ISSUE_DATE: 'issueDate', // Ngày hiệu lực
-  CUST_LEGAL_ID: 'custLegalID'
-}
-export const REQUIRE_FIELD_TYPES = {
-  REQUIRE_FIELD: 'requireField', // ATM
-  REQUIRE_FIELD_BANK_ACCOUNT: 'requireFieldBankAccount', // Internet banking
-}
 export const OS_NAME = {
   IOS: 'iOS',
-  ANDROID:'Android'
+  ANDROID: 'Android',
 }
+export const BUSINESS_NAME = 'Tổng công ty Viễn Thông MobiFone'
+export const BUSINESS_ADDRESS = 'Số 01 phố Phạm Văn Bạch, Yên Hòa, Cầu Giấy, Hà Nội'
+export const PHONE1 = '(+84-24) 3783 1800'
+export const PHONE2 = '(+84-24) 3783 1734'
 // endregion
