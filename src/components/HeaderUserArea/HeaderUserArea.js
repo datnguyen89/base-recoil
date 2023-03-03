@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { inject, observer } from 'mobx-react'
 import { Dropdown } from 'antd'
 import UserAvatar from '../UserAvatar'
 import ICONS from '../../icons'
 import { DropdownUserSetting, HeaderUserAreaWrapper } from './HeaderUserAreaStyled'
-import { useHistory } from 'react-router-dom'
-import ChangePasswordModal from '../ChangePasswordModal'
+import { useNavigate } from 'react-router-dom'
+// import ChangePasswordModal from '../ChangePasswordModal'
 import { PAGES } from '../../utils/constant'
 import { HeaderDropdownItem, HeaderDropdownItemText, HeaderDropdownWrapper } from '../CommonStyled/CommonStyled'
 import { LogoutOutlined, SettingOutlined } from '@ant-design/icons'
@@ -13,7 +12,7 @@ import { LogoutOutlined, SettingOutlined } from '@ant-design/icons'
 const HeaderUserArea = props => {
   // region props, hook, state
   const { commonStore, authenticationStore } = props
-  const history = useHistory()
+  const history = useNavigate()
   const [visibleChangePassword, setVisibleChangePassword] = useState(false)
 
   // endregion
@@ -28,7 +27,7 @@ const HeaderUserArea = props => {
   const handleClickLogout = () => {
     authenticationStore.logout()
       .finally(() => {
-        history.push(PAGES.LOGIN.PATH)
+        history(PAGES.LOGIN.PATH)
       })
   }
   const handleSuccessChangePassword = () => {
@@ -94,10 +93,10 @@ const HeaderUserArea = props => {
           <img src={ICONS.WHITE_ARROW_DOWN} alt={''} height={8} />
         </DropdownUserSetting>
       </Dropdown>
-      <ChangePasswordModal
-        visible={visibleChangePassword}
-        onSuccess={handleSuccessChangePassword}
-        onClose={() => setVisibleChangePassword(false)} />
+      {/*<ChangePasswordModal*/}
+      {/*  visible={visibleChangePassword}*/}
+      {/*  onSuccess={handleSuccessChangePassword}*/}
+      {/*  onClose={() => setVisibleChangePassword(false)} />*/}
 
     </HeaderUserAreaWrapper>
   )
@@ -105,4 +104,4 @@ const HeaderUserArea = props => {
 
 HeaderUserArea.propTypes = {}
 
-export default inject('commonStore', 'authenticationStore')(observer(HeaderUserArea))
+export default HeaderUserArea

@@ -1,16 +1,15 @@
 import React from 'react'
-import { inject, observer } from 'mobx-react'
 import { DEVICE, SIDEBAR_WIDTH_COLLAPSE, SIDEBAR_WIDTH_EXPAND } from '../../utils/constant'
 import { MainSideBarWrapper } from './MainSideBarStyled'
 import MenuSideBarArea from '../MenuSideBarArea'
+import { useRecoilValue } from 'recoil'
+import { collapsedState } from '../../recoil/commonState'
 
 const MainSideBar = props => {
   // region props, hook, state
-  const { commonStore } = props
-
+  const isCollapse = useRecoilValue(collapsedState)
   // endregion
   // region destructuring
-  const { isCollapse, device } = commonStore
 
   // endregion
   // region variable
@@ -37,4 +36,4 @@ const MainSideBar = props => {
 
 MainSideBar.propTypes = {}
 
-export default inject('commonStore')(observer(MainSideBar))
+export default MainSideBar

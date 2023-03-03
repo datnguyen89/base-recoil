@@ -18,3 +18,8 @@ export const appLoadingState = atom({
   key: 'appLoadingState',
   default: 0,
 })
+export const pageNameState = atom({
+  key: 'pageNameState',
+  default: '',
+})
+
