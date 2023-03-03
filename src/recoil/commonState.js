@@ -22,4 +22,9 @@ export const pageNameState = atom({
   key: 'pageNameState',
   default: '',
 })
+export const deviceState = atom({
+  key: 'deviceState',
+  default: '',
+})
+
 

@@ -48,6 +48,7 @@ const APP_THEME = {
   'ALERT_INFO_BG_COLOR': '#E9F5FF',
   'BORDER_COLOR_ACTIVE': '#9ED3FF',
   'BACKGROUND_COLOR_ACTIVE': '#DDF0FF',
+  'GRADIENT_COLOR': 'linear-gradient(108.88deg, #04BEFE 0%, #4481EB 100%)'
 }
 // Của thằng y
 // const APP_THEME = {

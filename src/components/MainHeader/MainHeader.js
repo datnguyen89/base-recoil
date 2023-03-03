@@ -9,21 +9,22 @@ import { Link, useNavigate } from 'react-router-dom'
 import { DEVICE, PAGES } from '../../utils/constant'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import MenuSideBarArea from '../MenuSideBarArea'
-import { useSetRecoilState } from 'recoil'
-import { collapsedState } from '../../recoil/commonState'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { collapsedState, deviceState } from '../../recoil/commonState'
+
+const APP_THEME = require('../../theme')
 
 const MainHeader = props => {
   // region props, hook, state
-  const setIsCollapse = useSetRecoilState(collapsedState)
+  const [isCollapse, setIsCollapse] = useRecoilState(collapsedState)
+  const device = useRecoilValue(deviceState)
 
-  const { commonStore } = props
   const history = useNavigate()
   const [visibleMobileDrawerRight, setVisibleMobileDrawerRight] = useState(false)
 
   // endregion
   // region destructuring
-  const { appTheme } = commonStore
-  const { device } = commonStore
+
 
   // endregion
   // region variable
@@ -31,7 +32,7 @@ const MainHeader = props => {
   // endregion
   // region function handle logic
   const handleToggleSideBar = () => {
-    setIsCollapse(!commonStore.isCollapse)
+    setIsCollapse(!isCollapse)
   }
   // endregion
   // region function render
@@ -42,14 +43,14 @@ const MainHeader = props => {
   // endregion
 
   return (
-    <MainHeaderWrapper gradientColor={appTheme.gradientColor}>
-      <HeaderLogoArea width={device === DEVICE.DESKTOP ? commonStore.isCollapse ? 'auto' : '220px' : 'auto'}>
+    <MainHeaderWrapper gradientColor={APP_THEME.GRADIENT_COLOR}>
+      <HeaderLogoArea width={device === DEVICE.DESKTOP ? isCollapse ? 'auto' : '220px' : 'auto'}>
         <img src={IMAGES.AUTH_LOGO} alt={''} style={{ cursor: 'pointer' }} height={48}
              onClick={() => history(PAGES.HOME.PATH)} />
         {
           device === DEVICE.DESKTOP
             ?
-            commonStore.isCollapse
+            isCollapse
               ?
               <MenuUnfoldOutlined onClick={handleToggleSideBar} />
               :
@@ -72,11 +73,11 @@ const MainHeader = props => {
           color={'#fff'}
           style={{ cursor: 'pointer' }} />
         <Drawer
-          title={<Link style={{ color: appTheme.solidColor }} to={'/'}>CMS Ví doanh nghiệp</Link>}
+          title={<Link style={{ color: APP_THEME.PRIMARY_COLOR }} to={'/'}>CMS Ví doanh nghiệp</Link>}
           placement='right'
           style={{ padding: 0 }}
           onClose={() => setVisibleMobileDrawerRight(false)}
-          visible={visibleMobileDrawerRight}>
+          open={visibleMobileDrawerRight}>
           <MenuSideBarArea />
         </Drawer>
       </MainHeaderRightMobile>

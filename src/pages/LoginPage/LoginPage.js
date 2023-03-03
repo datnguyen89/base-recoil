@@ -184,7 +184,7 @@ const LoginPage = props => {
         <OtpModal
           phoneNumber={''}
           description={currPayload.Description}
-          visible={visibleOtp}
+          open={visibleOtp}
           onCancel={handleCancelOtp}
           callbackOtp={handleSubmitOtp} />
       </LoginPageWrapper>

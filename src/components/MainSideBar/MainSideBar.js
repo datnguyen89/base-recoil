@@ -3,11 +3,12 @@ import { DEVICE, SIDEBAR_WIDTH_COLLAPSE, SIDEBAR_WIDTH_EXPAND } from '../../util
 import { MainSideBarWrapper } from './MainSideBarStyled'
 import MenuSideBarArea from '../MenuSideBarArea'
 import { useRecoilValue } from 'recoil'
-import { collapsedState } from '../../recoil/commonState'
+import { collapsedState, deviceState } from '../../recoil/commonState'
 
 const MainSideBar = props => {
   // region props, hook, state
   const isCollapse = useRecoilValue(collapsedState)
+  const device = useRecoilValue(deviceState)
   // endregion
   // region destructuring
 

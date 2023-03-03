@@ -8,16 +8,15 @@ import { useNavigate } from 'react-router-dom'
 import { PAGES } from '../../utils/constant'
 import { HeaderDropdownItem, HeaderDropdownItemText, HeaderDropdownWrapper } from '../CommonStyled/CommonStyled'
 import { LogoutOutlined, SettingOutlined } from '@ant-design/icons'
+const APP_THEME = require('../../theme')
 
 const HeaderUserArea = props => {
   // region props, hook, state
-  const { commonStore, authenticationStore } = props
   const history = useNavigate()
   const [visibleChangePassword, setVisibleChangePassword] = useState(false)
 
   // endregion
   // region destructuring
-  const { currUserName } = authenticationStore
 
   // endregion
   // region variable
@@ -25,17 +24,12 @@ const HeaderUserArea = props => {
   // endregion
   // region function handle logic
   const handleClickLogout = () => {
-    authenticationStore.logout()
-      .finally(() => {
-        history(PAGES.LOGIN.PATH)
-      })
+    console.log('logout')
   }
   const handleSuccessChangePassword = () => {
     console.log('Đổi mật khẩu thành công')
   }
-  const handleChangeAppTheme = themeName => {
-    commonStore.setTheme(themeName)
-  }
+
   // endregion
   // region function render
   const menu = (
@@ -43,7 +37,7 @@ const HeaderUserArea = props => {
       <HeaderDropdownItem
         justifyContent={'center'}
         onClick={() => setVisibleChangePassword(true)}
-        color={commonStore.appTheme.solidColor}>
+        color={APP_THEME.PRIMARY_COLOR}>
         <SettingOutlined style={{ fontSize: 20 }} />
         <HeaderDropdownItemText>
           Đổi mật khẩu
@@ -52,7 +46,7 @@ const HeaderUserArea = props => {
       <HeaderDropdownItem
         justifyContent={'center'}
         onClick={() => handleClickLogout()}
-        color={commonStore.appTheme.solidColor}>
+        color={APP_THEME.PRIMARY_COLOR}>
         <LogoutOutlined style={{ fontSize: 20 }} />
         <HeaderDropdownItemText>
           Đăng xuất
@@ -81,15 +75,15 @@ const HeaderUserArea = props => {
   // endregion
 
   return (
-    <HeaderUserAreaWrapper id={'user-menu-wrapper'} color={commonStore.appTheme.solidColor}>
-      <Dropdown overlay={menu}
+    <HeaderUserAreaWrapper id={'user-menu-wrapper'} color={APP_THEME.PRIMARY_COLOR}>
+      <Dropdown menu={menu}
                 overlayClassName={'header-user-area'}
                 placement={'bottomRight'}
                 trigger={['click']}
                 getPopupContainer={() => document.getElementById('user-menu-wrapper')}>
         <DropdownUserSetting>
           <UserAvatar avatarUrl={null} />
-          <span>{currUserName || ''}</span>
+          <span>{'MOCK'}</span>
           <img src={ICONS.WHITE_ARROW_DOWN} alt={''} height={8} />
         </DropdownUserSetting>
       </Dropdown>
